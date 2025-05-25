@@ -1,1 +1,136 @@
-<html><body>Загрузка...</body></html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RUSTKRALEX | Статистика</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+    }
+    header {
+      background-color: #1f1f1f;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+    header img {
+      height: 50px;
+      max-width: 100%;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    nav a {
+      padding: 10px 15px;
+      background-color: #2b2b2b;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+    nav a:hover { background-color: #444; }
+    .container { padding: 20px; }
+    .rules { margin-bottom: 40px; }
+    .lang-switch {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      z-index: 10;
+    }
+    .lang-switch button {
+      background-color: #2b2b2b;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      margin-left: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .lang-switch button:hover { background-color: #444; }
+    iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
+    }
+    @media (max-width: 600px) {
+      nav { flex-direction: column; align-items: flex-start; }
+      nav a { width: 100%; text-align: center; }
+      iframe { height: 60vh; }
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-switch">
+    <button onclick="switchLang('ru')">Рус</button>
+    <button onclick="switchLang('en')">Eng</button>
+  </div>
+  <header>
+    <img src="https://i.imgur.com/yourlogo.png" alt="Logo">
+    <nav>
+      <a href="#rules" id="btn-rules">Правила</a>
+      <a href="https://discord.gg/ryFcGbfJ" target="_blank" id="btn-discord">Дискорд</a>
+      <a href="https://discord.gg/yZC7zbrf" target="_blank" id="btn-vip">Как получить VIP-наборы</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <section class="rules" id="rules">
+      <h2 id="rules-title">Правила</h2>
+      <ul id="rules-list">
+        <li>Запрещено использование читов, багов, макросов и стороннего ПО.</li>
+        <li>Уважайте других игроков: запрещены оскорбления, травля, токсичность.</li>
+        <li>Максимум 6 человек в команде. Нарушение — бан.</li>
+        <li>Реклама сторонних серверов запрещена.</li>
+        <li>Не выдавайте себя за администрацию.</li>
+        <li>Используйте тикеты для жалоб и обращений.</li>
+      </ul>
+    </section>
+    <iframe src="https://hollowservers.co/leaderboards"></iframe>
+  </div>
+
+  <script>
+    const rulesList = document.getElementById('rules-list');
+    const rulesTitle = document.getElementById('rules-title');
+    const btnRules = document.getElementById('btn-rules');
+    const btnVIP = document.getElementById('btn-vip');
+
+    const rules = {
+      ru: [
+        "Запрещено использование читов, багов, макросов и стороннего ПО.",
+        "Уважайте других игроков: запрещены оскорбления, травля, токсичность.",
+        "Максимум 6 человек в команде. Нарушение — бан.",
+        "Реклама сторонних серверов запрещена.",
+        "Не выдавайте себя за администрацию.",
+        "Используйте тикеты для жалоб и обращений."
+      ],
+      en: [
+        "No cheats, bugs, macros, or 3rd party tools.",
+        "Respect others: no harassment, insults, toxicity.",
+        "Team limit is 6 players. Violation = ban.",
+        "No advertising other servers.",
+        "Don’t impersonate admins.",
+        "Use tickets to report issues."
+      ]
+    };
+
+    function switchLang(lang) {
+      rulesList.innerHTML = rules[lang].map(rule => `<li>${rule}</li>`).join('');
+      rulesTitle.textContent = lang === 'ru' ? 'Правила' : 'Rules';
+      btnRules.textContent = lang === 'ru' ? 'Правила' : 'Rules';
+      btnVIP.textContent = lang === 'ru' ? 'Как получить VIP-наборы' : 'How to get VIP kits';
+    }
+
+    switchLang('ru');
+  </script>
+</body>
+</html>
